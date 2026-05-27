@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Seu Carrinho | Neném do Papai</title>
+  <link rel="stylesheet" href="carrinho.css">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.43.4/dist/umd/supabase.js"></script>
+</head>
+<body>
+
+  <header>
+    <div class="logo" onclick="window.location.href='../index.html'">Neném do Papai</div>
+    <nav>
+      <span id="user-status">Olá, visitante!</span>
+      <a href="../index.html" class="btn-voltar">Continuar Comprando</a>
+    </nav>
+  </header>
+
+<main class="cart-wrapper">
+  
+  <button type="button" class="btn-icone-canto" onclick="window.location.href='../index.html'" title="Voltar para a loja">
+    🛍️ <span class="texto-mini">Loja</span>
+  </button>
+
+  <section class="cart-left">
+      <div class="cart-card">
+        <h2>Produtos no Carrinho</h2>
+        <div id="cart-products-list">
+          </div>
+      </div>
+
+      <div class="cart-card delivery-section">
+        <h2>Dados para Entrega de Moto</h2>
+        <div class="cep-group">
+          <label for="cep-input">Informe seu CEP:</label>
+          <div class="input-inline">
+            <input type="text" id="cep-input" maxlength="9" placeholder="04328-030">
+            <button type="button" onclick="verificarCepEntrega()">Calcular Frete</button>
+          </div>
+          <p id="delivery-feedback" class="feedback-msg"></p>
+        </div>
+
+        <div id="campos-entrega-contato" style="display: none;">
+          <div class="input-field">
+            <label for="rua-input">Rua/Avenida:</label>
+            <input type="text" id="rua-input" placeholder="Ex: Av. Cupecê">
+          </div>
+
+          <div class="input-row">
+            <div class="input-field">
+              <label for="numero-input">Número *:</label>
+              <input type="text" id="numero-input" placeholder="123">
+            </div>
+            <div class="input-field">
+              <label for="comp-input">Complemento:</label>
+              <input type="text" id="comp-input" placeholder="Ap 42 / Casa B">
+            </div>
+          </div>
+
+          <div class="input-field">
+            <label for="entrega-telefone">WhatsApp para contato *:</label>
+            <input type="tel" id="entrega-telefone" placeholder="(11) 99999-9999" maxlength="15">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <aside class="cart-right">
+      <div class="summary-card">
+        <h2>Resumo do Pedido</h2>
+        <div class="summary-row">
+          <span>Subtotal</span>
+          <span id="subtotal-value">R$ 0,00</span>
+        </div>
+        <div class="summary-row">
+          <span>Entrega de Moto</span>
+          <span id="delivery-cost">A calcular</span>
+        </div>
+        <hr>
+        <div class="summary-row total-row">
+          <span>Total</span>
+          <span id="total-value">R$ 0,00</span>
+        </div>
+
+        <div id="checkout-errors" class="error-box" style="display: none;">
+          <strong>Atenção:</strong>
+          <ul id="lista-erros"></ul>
+        </div>
+
+        <button id="btn-checkout" class="btn-finalize" onclick="checkout()">Finalizar Compra</button>
+      </div>
+    </aside>
+  </main>
+
+  <script src="../app.js"></script> 
+  <script src="carrinho.js"></script>
+</body>
+</html>

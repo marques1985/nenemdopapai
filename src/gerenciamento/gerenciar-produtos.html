@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painel - Cadastrar Produto</title>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 40px; background-color: #f4f4f9; color: #333; }
+        .form-container { max-width: 750px; background: white; padding: 30px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); margin: 0 auto; }
+        .form-group { margin-bottom: 15px; display: flex; flex-direction: column; }
+        label { margin-bottom: 5px; font-weight: bold; font-size: 14px; }
+        input, select, textarea { padding: 10px; border: 1px solid #ccc; border-radius: 4px; font-size: 14px; }
+        button { padding: 12px; background-color: #ff6b81; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 16px; font-weight: bold; margin-top: 10px; }
+        button:hover { background-color: #ff4757; }
+        .voltar { display: inline-block; margin-bottom: 20px; color: #ff6b81; text-decoration: none; font-weight: bold; }
+        
+        .secao-variacoes { margin-top: 25px; padding-top: 20px; border-top: 2px dashed #ccc; }
+        /* Ajustado o grid para incluir o campo de imagem por cor */
+        .linha-variacao { display: grid; grid-template-columns: 2fr 2fr 1fr 3fr auto; gap: 10px; margin-bottom: 15px; align-items: end; background: #f9f9fb; padding: 10px; border-radius: 6px; border: 1px solid #e1e1e7; }
+        .btn-adicionar { background-color: #2ed573; margin-bottom: 15px; font-size: 14px; padding: 8px; }
+        .btn-adicionar:hover { background-color: #26af5f; }
+        .btn-remover { background-color: #ff4757; padding: 10px; font-size: 14px; height: 40px; }
+    </style>
+</head>
+<body>
+
+    <div class="form-container">
+        <a href="../../index.html" class="voltar">← Voltar para a Loja</a>
+        <h2>Cadastrar Novo Produto Completo</h2>
+        
+        <form id="form-produto">
+            <div class="form-group">
+                <label for="nome">Nome do Produto</label>
+                <input type="text" id="nome" required placeholder="Ex: Conjunto Brim Camiseta - Ref 460">
+            </div>
+
+            <div class="form-group">
+                <label for="descricao">Descrição</label>
+                <textarea id="descricao" rows="3" placeholder="Detalhes do tecido, o que acompanha..."></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="preco">Preço Base (R$)</label>
+                <input type="number" id="preco" step="0.01" required placeholder="0,00">
+            </div>
+
+            <div class="form-group">
+                <label for="categoria">Categoria</label>
+                <select id="categoria" required>
+                    <option value="1">Verão</option>
+                    <option value="2">Inverno</option>
+                    <option value="3">Meia-Estação</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="genero">Gênero</label>
+                <select id="genero" required>
+                    <option value="1">Menino</option>
+                    <option value="2">Menina</option>
+                    <option value="3">Unissex</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="fotos-principais">Fotos Principais / Mistas (Selecione uma ou mais)</label>
+                <input type="file" id="fotos-principais" accept="image/*" multiple required>
+            </div>
+
+            <div class="secao-variacoes">
+                <h3>Grade de Variações (Cor, Tamanho e Foto da Cor)</h3>
+                <button type="button" id="btn-add-variacao" class="btn-adicionar">+ Adicionar Linha de Variação</button>
+                <div id="container-linhas-variacao"></div>
+            </div>
+
+            <button type="submit" style="width: 100%; margin-top: 30px;">Salvar Produto Completo</button>
+        </form>
+    </div>
+
+    <script type="module" src="./salvarProdutos.js"></script>
+</body>
+</html>

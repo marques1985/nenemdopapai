@@ -1,0 +1,604 @@
+/**
+* ! Alterando os estilos padrões do navegador
+**/
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: sans-serif;
+}
+
+i {
+    cursor: pointer;
+}
+
+a {
+    text-decoration: none;
+    color: white;
+}
+
+/**
+* ! Estilos da Barra de Navegação
+**/
+
+.barra-navegacao {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #212529;
+    color: white;
+    padding: 25px 60px;
+    margin-bottom: 30px;
+}
+
+.carrinho {
+    position: relative;
+    background-color: #fff;
+    color: #212529;
+    font-size: 30px;
+    padding: 5px;
+    border-radius: 4px;
+}
+
+.quantidadeCarrinho {
+    position: absolute;
+    top: -15px;
+    right: -10px;
+    font-size: 16px;
+    background-color: red;
+    color: white;
+    padding: 3px;
+    border-radius: 3px;
+}
+
+/**
+* ! Estilos dos produtos da Loja
+**/
+
+.loja {
+    display: grid;
+    grid-template-columns: repeat(4, 223px);
+    gap: 30px;
+    justify-content: center;
+    margin-bottom: 50px;
+}
+
+@media (max-width: 1000px) {
+    .loja {
+        grid-template-columns: repeat(2, 223px);
+    }
+}
+
+@media (max-width: 500px) {
+    .loja {
+        grid-template-columns: repeat(1, 223px);
+    }
+}
+
+.item {
+    border: 2px solid #212529;
+    border-radius: 4px;
+}
+
+.item img {
+    width: 100%;
+    border-radius: 2px 2px 0 0;
+}
+
+.detalhes {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    gap: 10px;
+}
+
+.preco-quantidade {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.botoes {
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+    font-size: 16px;
+}
+
+.bi-dash-lg {
+    color: red;
+}
+
+.bi-plus-lg {
+    color: green;
+}
+
+/**
+* ! Estilos de rótulos e botões
+**/
+
+.text-center {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.botao-loja,
+.checkout,
+.removerTudo {
+    background-color: #212529;
+    color: white;
+    border: none;
+    padding: 6px;
+    border-radius: 3px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.checkout {
+    background-color: green;
+}
+
+.removerTudo {
+    background-color: red;
+}
+
+.bi-x-lg {
+    color: red;
+    font-weight: bold;
+}
+
+/**
+* ! Estilos do Carrinho de Compras
+**/
+
+.carrinho-compras {
+    display: grid;
+    grid-template-columns: repeat(1, 320px);
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 50px;
+}
+
+/**
+* ! Estilos de cada item do carrinho
+**/
+
+.item-carrinho {
+    border: 2px solid #212529;
+    border-radius: 5px;
+    display: flex;
+}
+
+.titulo-preco-x {
+    width: 195px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.titulo-preco {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.preco-item-carrinho {
+    background-color: #212529;
+    color: white;
+    border-radius: 4px;
+    padding: 3px 6px;
+    white-space: nowrap;
+}
+/* ==========================================================================
+   ESTILO DO CABEÇALHO PADRONIZADO (LOGO | NOME | CARRINHO)
+   ========================================================================== */
+
+.topo-header-padrao {
+    background-color: #212529; /* Fundo escuro padrão */
+    color: #ffffff;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between; /* Distribui os 3 blocos igualmente */
+    align-items: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.15);
+    box-sizing: border-box;
+    width: 100%;
+}
+
+/* Otimização dos 3 blocos para manter o centro sempre perfeito */
+.header-bloco-esquerdo, 
+.header-bloco-direito {
+    flex: 1;
+    display: flex;
+    align-items: center;
+}
+
+.header-bloco-direito {
+    justify-content: flex-end; /* Empurra o carrinho pro extremo direito */
+}
+
+.header-bloco-centro {
+    flex: 2; /* Dá mais espaço para o texto do meio */
+    display: flex;
+    justify-content: center; /* Centraliza perfeitamente o nome da loja */
+    text-align: center;
+}
+
+/* Estilo da Imagem da Logo */
+.logo-imagem-padrao {
+    height: 45px; /* Altura ideal e controlada */
+    width: auto;
+    object-fit: contain;
+    cursor: pointer;
+    transition: opacity 0.2s;
+}
+
+.logo-imagem-padrao:hover {
+    opacity: 0.85;
+}
+
+/* Estilo do Nome da Loja Centralizado */
+.titulo-loja-padrao {
+    margin: 0;
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    white-space: nowrap; /* Evita que o nome quebre em duas linhas em telas menores */
+}
+
+/* Estilo do Ícone do Carrinho e Contador */
+.cart-icon-container {
+    position: relative;
+    display: inline-block;
+    color: #ffffff;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.cart-icon-container:hover {
+    color: #e0e0e0;
+}
+
+.cart-icon-container .badge-contador {
+    position: absolute;
+    top: -7px;
+    right: -8px;
+    background-color: #ff0000;
+    color: white;
+    border-radius: 50%;
+    padding: 2px 6px;
+    font-size: 11px;
+    font-weight: bold;
+    line-height: 1;
+}
+
+/* Espaçamento para o catálogo de produtos não colar no cabeçalho */
+.loja {
+    margin-top: 35px; /* Empurra a vitrine para baixo dando o respiro original */
+    padding: 0 15px;  /* Mantém um alinhamento confortável nas laterais */
+}
+
+/* ==========================================================================
+   ESTILIZAÇÃO RESPONSIVA DO CARRINHO (DESKTOP VS MOBILE)
+   ========================================================================== */
+
+.item-carrinho-row {
+    display: flex;
+    align-items: center;
+    padding: 15px 0;
+    border-bottom: 1px solid #eee;
+    gap: 15px;
+    width: 100%;
+    box-sizing: border-box;
+    background: #fff;
+    font-family: sans-serif;
+}
+
+.prod-img-box img {
+    width: 75px;
+    height: 75px;
+    object-fit: cover;
+    border-radius: 6px;
+    border: 1px solid #eee;
+}
+
+.prod-detalhes-wrapper {
+    display: flex;
+    flex-grow: 1;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.prod-info-text h4 {
+    margin: 0 0 2px 0;
+    font-size: 14px;
+    color: #222;
+    font-weight: 600;
+}
+
+.prod-variacao {
+    margin: 0 0 4px 0;
+    font-size: 12px;
+    color: #777;
+}
+
+.prod-preco-unit {
+    font-size: 13px;
+    color: #555;
+}
+
+.prod-controles-valores {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.prod-seletor-qtd {
+    display: flex;
+    align-items: center;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    overflow: hidden;
+    background: #fff;
+    height: 28px;
+}
+
+.prod-seletor-qtd button {
+    border: none;
+    background: #fff;
+    width: 24px;
+    height: 100%;
+    cursor: pointer;
+    font-size: 14px;
+    color: #555;
+}
+
+.qtd-numero {
+    width: 26px;
+    text-align: center;
+    font-size: 13px;
+    font-weight: 600;
+    color: #111;
+    display: inline-block;
+    line-height: 28px;
+}
+
+.prod-preco-total {
+    text-align: right;
+    color: #000;
+    font-size: 15px;
+    font-weight: 700;
+    min-width: 75px;
+    white-space: nowrap;
+}
+
+/* Estilos básicos do Bloco de Resumo */
+.resumo-titulo { margin: 0 0 15px 0; font-size: 16px; font-weight: 700; color: #333; border-bottom: 1px solid #eee; padding-bottom: 8px; }
+.resumo-linha { display: flex; justify-content: space-between; margin-bottom: 10px; font-size: 14px; color: #555; }
+.resumo-linha-frete { display: flex; justify-content: space-between; margin-bottom: 15px; font-size: 14px; color: #555; border-bottom: 1px solid #eee; padding-bottom: 12px; }
+.frete-gratis { color: #28a745; font-weight: 600; }
+.resumo-linha-total { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 20px; }
+.total-bold { font-size: 18px; font-weight: 800; color: #000; }
+.total-pix { font-size: 13px; color: #28a745; font-weight: 700; margin-top: 3px; }
+.btn-finalizar { width: 100%; background: #28a745; color: #fff; border: none; padding: 12px; font-size: 15px; font-weight: 700; border-radius: 6px; cursor: pointer; margin-bottom: 10px; }
+.btn-continuar { width: 100%; background: #fff; color: #0056b3; border: 1px solid #0056b3; padding: 10px; font-size: 14px; font-weight: 600; border-radius: 6px; cursor: pointer; }
+
+/* 📱 CONFIGURAÇÃO EXCLUSIVA PARA CELULAR (MOBILE) 📱 */
+@media (max-width: 580px) {
+    .prod-detalhes-wrapper {
+        flex-direction: column; /* Empilha a descrição e os valores */
+        align-items: flex-start;
+        gap: 12px;
+    }
+
+    .prod-controles-valores {
+        width: 100%;
+        justify-content: space-between; /* Deixa os botões na esquerda e o preço total na direita */
+        background-color: #f8f9fa;   /* Caixa cinza de destaque igual você gostou */
+        padding: 8px 10px;
+        border-radius: 6px;
+        box-sizing: border-box;
+    }
+    
+    .prod-preco-unit {
+        display: block;
+        margin-top: 4px;
+        font-weight: bold;
+    }
+}
+/* ==========================================================================
+   ESTILIZAÇÃO GERAL E RESPONSIVA DO CARRINHO DE COMPRAS
+   ========================================================================== */
+
+.itens-carrinho {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 15px;
+    box-sizing: border-box;
+    background: #fff;
+}
+
+.item-carrinho-row {
+    display: flex;
+    align-items: center;
+    padding: 15px 0;
+    border-bottom: 1px solid #eee;
+    gap: 15px;
+    width: 100%;
+    box-sizing: border-box;
+    background: #fff;
+    font-family: sans-serif;
+}
+
+.prod-img-box {
+    flex-shrink: 0;
+}
+.prod-img-box img {
+    width: 75px;
+    height: 75px;
+    object-fit: cover;
+    border-radius: 6px;
+    border: 1px solid #eee;
+}
+
+.prod-detalhes-wrapper {
+    display: flex;
+    flex-grow: 1;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.prod-info-text {
+    flex: 1;
+}
+.prod-info-text h4 {
+    margin: 0 0 4px 0;
+    font-size: 14px;
+    color: #222;
+    font-weight: 600;
+    line-height: 1.3;
+}
+
+.prod-variacao {
+    display: inline-block;
+    margin: 0 0 4px 0;
+    font-size: 12px;
+    color: #555;
+    background-color: #e9ecef;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-weight: 500;
+}
+
+/* Preço unitário padrão */
+.prod-preco-unit {
+    font-size: 13px;
+    color: #555;
+    font-weight: 600;
+}
+
+.prod-controles-valores {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.prod-seletor-qtd {
+    display: flex;
+    align-items: center;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    overflow: hidden;
+    background: #fff;
+    height: 28px;
+}
+.prod-seletor-qtd button {
+    border: none;
+    background: #fff;
+    width: 24px;
+    height: 100%;
+    cursor: pointer;
+    font-size: 14px;
+    color: #555;
+    font-weight: bold;
+}
+.qtd-numero {
+    width: 26px;
+    text-align: center;
+    font-size: 13px;
+    font-weight: 600;
+    color: #111;
+    display: inline-block;
+    line-height: 28px;
+}
+
+.prod-preco-total {
+    text-align: right;
+    color: #000;
+    font-size: 15px;
+    font-weight: 700;
+    min-width: 75px;
+    white-space: nowrap;
+}
+
+/* Resumo da Compra */
+.resumo-compra { width: 100%; max-width: 600px; margin: 20px auto; padding: 20px; box-sizing: border-box; background: #fdfdfd; border-top: 2px solid #eee; font-family: sans-serif; }
+.resumo-titulo { margin: 0 0 15px 0; font-size: 16px; font-weight: 700; color: #333; border-bottom: 1px solid #eee; padding-bottom: 8px; }
+.resumo-linha { display: flex; justify-content: space-between; margin-bottom: 10px; font-size: 14px; color: #555; }
+.resumo-linha-frete { display: flex; justify-content: space-between; margin-bottom: 15px; font-size: 14px; color: #555; border-bottom: 1px solid #eee; padding-bottom: 12px; }
+.frete-gratis { color: #28a745; font-weight: 600; }
+.resumo-linha-total { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 20px; }
+.total-valores-bloco { text-align: right; }
+.total-bold { font-size: 18px; font-weight: 800; color: #000; }
+.total-pix { font-size: 13px; color: #28a745; font-weight: 700; margin-top: 3px; }
+.btn-finalizar { width: 100%; background: #28a745; color: #fff; border: none; padding: 12px; font-size: 15px; font-weight: 700; border-radius: 6px; cursor: pointer; margin-bottom: 10px; }
+.btn-continuar { width: 100%; background: #fff; color: #0056b3; border: 1px solid #0056b3; padding: 10px; font-size: 14px; font-weight: 600; border-radius: 6px; cursor: pointer; }
+
+/* ==========================================================================
+   📱 CONFIGURAÇÃO EXCLUSIVA PARA CELULAR (MOBILE REORGANIZADO) 📱
+   ========================================================================== */
+@media (max-width: 580px) {
+    /* Faz o bloco de texto ocupar a largura total de cima */
+    .prod-detalhes-wrapper {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    /* Junta Preço, Seletor e Total lado a lado na barra cinza inferior */
+    .prod-controles-valores {
+        width: 100%;
+        display: flex;
+        flex-direction: row;        /* Garante o alinhamento horizontal */
+        align-items: center;        /* Alinha todos na mesma altura do centro */
+        justify-content: space-between; /* Espalha igualmente: esquerda, meio e direita */
+        background-color: #f8f9fa;   /* Faixa cinza de destaque */
+        padding: 8px 12px;
+        border-radius: 6px;
+        box-sizing: border-box;
+        gap: 5px;
+    }
+
+    /* Ajustes finos nos tamanhos para caber perfeitamente na barra mobile */
+    .prod-preco-unit {
+        font-size: 13px;
+    }
+    .prod-preco-total {
+        font-size: 14px;
+        min-width: auto;
+    }
+}
+/* Alinhamento do bloco direito para acomodar o Login + Carrinho lado a lado */
+.header-bloco-direito {
+    display: flex;
+    align-items: center;
+    gap: 18px; /* Distância confortável entre o "Entrar" e o carrinho */
+}
+
+/* Estilização do link de login no cabeçalho */
+.login-header-link {
+    color: inherit; /* Herda a cor do seu texto atual do cabeçalho */
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    font-family: sans-serif;
+    transition: opacity 0.2s;
+    white-space: nowrap; /* Impede que o "Olá, Nome" quebre em duas linhas */
+}
+
+.login-header-link:hover {
+    opacity: 0.8;
+}
+
+.login-header-link strong {
+    font-weight: 700;
+}
