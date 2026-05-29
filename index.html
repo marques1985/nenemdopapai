@@ -13,7 +13,7 @@
 
 <body>
 
-<header class="topo-header-padrao">
+    <header class="topo-header-padrao">
         <div class="header-bloco-esquerdo">
             <a href="index.html" class="logo-link" title="Voltar para a página inicial">
                 <img src="logo.png" alt="Logo Nenem do Papai" class="logo-imagem-padrao">
@@ -30,19 +30,28 @@
             </a>
 
             <a href="carrinho.html" class="cart-icon-container" title="Ver meu carrinho">
-                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-cart3" viewBox="0 0 16 16">
-                    <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .49.598l-1 5a.5.5 0 0 1-.465.401l-9.397.472L4.415 11H13a.5.5 0 0 1 0 1H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5M3.102 4l.84 4.479 9.144-.459L13.89 4zM5 12a1 1 0 1 0 0 2 1 1 0 0 0 0-2m7 0a1 1 0 1 0 0 2 1 1 0 0 0 0-2m-7 1a.5.5 0 1 1 0-1 .5.5 0 0 1 0 1m7 0a.5.5 0 1 1 0-1 .5.5 0 0 1 0 1"/>
+                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-cart3"
+                    viewBox="0 0 16 16">
+                    <path
+                        d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .49.598l-1 5a.5.5 0 0 1-.465.401l-9.397.472L4.415 11H13a.5.5 0 0 1 0 1H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5M3.102 4l.84 4.479 9.144-.459L13.89 4zM5 12a1 1 0 1 0 0 2 1 1 0 0 0 0-2m7 0a1 1 0 1 0 0 2 1 1 0 0 0 0-2m-7 1a.5.5 0 1 1 0-1 .5.5 0 0 1 0 1m7 0a.5.5 0 1 1 0-1 .5.5 0 0 1 0 1" />
                 </svg>
                 <span id="quantidadeCarrinho" class="badge-contador quantidadeCarrinho">0</span>
             </a>
         </div>
     </header>
 
-<div class="loja" id="loja"></div>
-
-    <script type="module" src="src/auth_header.js"></script>
+    <div class="loja" id="loja"></div>
 
     <script type="module" src="src/loja/listarProdutos.js"></script>
+
+<script>
+        // Verifica se o cliente já passou pela verificação de CEP nesta visita
+        if (!sessionStorage.getItem('cepVerificado')) {
+            // Se não passou, envia ele imediatamente para a página de solicitar CEP
+            window.location.href = 'solicitar-cep.html';
+        }
+    </script>
+    
 </body>
 
 </html>

@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Conferir CEP</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      background: #222222;
+      /* Fundo escuro idêntico à sua imagem */
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    /* Container centralizado da imagem */
+    .modal-cep {
+      background: #ffffff;
+      width: 90%;
+      max-width: 360px;
+      padding: 30px 24px;
+      border: 2px solid #000000;
+      position: relative;
+      text-align: center;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    }
+
+    /* Botão X */
+    .btn-fechar-x {
+      position: absolute;
+      top: 15px;
+      right: 20px;
+      font-size: 18px;
+      font-weight: bold;
+      cursor: pointer;
+      color: #000;
+      background: none;
+      border: none;
+    }
+
+    .titulo {
+      font-size: 18px;
+      margin-bottom: 20px;
+      color: #000;
+    }
+
+    /* Caixa de Status */
+    .status-box {
+      width: 100%;
+      padding: 12px;
+      border: 1.5px solid #000000;
+      margin-bottom: 15px;
+      font-size: 14px;
+      font-weight: bold;
+      min-height: 45px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: #f9f9f9;
+      transition: all 0.3s ease;
+    }
+
+    /* Cores de Feedback */
+    .status-sucesso {
+      background-color: #d4edda;
+      color: #155724;
+      border-color: #c3e6cb;
+    }
+
+    .status-erro {
+      background-color: #f8d7da;
+      color: #721c24;
+      border-color: #f5c6cb;
+    }
+
+    /* Input */
+    .input-cep {
+      width: 100%;
+      padding: 12px;
+      border: 1.5px solid #000000;
+      margin-bottom: 20px;
+      font-size: 16px;
+      text-align: center;
+      letter-spacing: 2px;
+      outline: none;
+    }
+
+    /* Botões */
+    .btn-acao {
+      width: 100%;
+      padding: 12px;
+      border: 1.5px solid #000000;
+      background: #ffffff;
+      font-size: 15px;
+      cursor: pointer;
+      margin-bottom: 15px;
+      transition: background 0.2s;
+      font-weight: 500;
+    }
+
+    .btn-acao:hover {
+      background: #f0f0f0;
+    }
+
+    .btn-depois {
+      margin-bottom: 0;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="modal-cep">
+    <button class="btn-fechar-x" id="fecharX" title="Fechar">X</button>
+
+    <div class="titulo">conferir cep</div>
+
+    <div class="status-box" id="statusBox">
+      status aceito ou nao
+    </div>
+
+    <input type="text" class="input-cep" id="cepInput" placeholder="cep _____ - ___" maxlength="9">
+
+    <button class="btn-acao" id="btnVerificar">verificar</button>
+    <button class="btn-acao btn-depois" id="btnDepois">verificar depois</button>
+  </div>
+
+  <script>
+    const fecharX = document.getElementById('fecharX');
+    const btnDepois = document.getElementById('btnDepois');
+    const btnVerificar = document.getElementById('btnVerificar');
+    const cepInput = document.getElementById('cepInput');
+    const statusBox = document.getElementById('statusBox');
+
+    // Máscara do CEP (00000-000)
+    cepInput.addEventListener('input', (e) => {
+      let value = e.target.value.replace(/\D/g, '');
+      if (value.length > 5) {
+        value = value.replace(/^(\d{5})(\d)/, '$1-$2');
+      }
+      e.target.value = value;
+    });
+
+    // Função atualizada para ir para a página da loja (index.html)
+    function irParaLoja() {
+      // Salva no navegador que o usuário já passou por essa tela
+      sessionStorage.setItem('cepVerificado', 'true');
+      // Redireciona para a loja
+      window.location.href = 'index.html';
+    }
+
+    // Cliques para pular a validação
+    fecharX.addEventListener('click', irParaLoja);
+    btnDepois.addEventListener('click', irParaLoja);
+
+    // Lógica de verificação
+    btnVerificar.addEventListener('click', async () => {
+      const cepLimpo = cepInput.value.replace(/\D/g, '');
+
+      if (cepLimpo.length !== 8) {
+        atualizarStatus('Digite um CEP completo!', 'erro');
+        return;
+      }
+
+      atualizarStatus('Verificando...', '');
+      const atendeRegiao = cepLimpo.startsWith('043');
+
+      try {
+        const response = await fetch(`https://viacep.com.br/ws/${cepLimpo}/json/`);
+        const dados = await response.json();
+
+        if (dados.erro) {
+          atualizarStatus('CEP inexistente!', 'erro');
+          return;
+        }
+
+        if (atendeRegiao) {
+          atualizarStatus('Sim, atendemos! Entrando na loja...', 'sucesso');
+          // Aguarda 2 segundos exibindo o aviso verde e redireciona
+          setTimeout(irParaLoja, 2000);
+        } else {
+          atualizarStatus('Desculpe, não atendemos sua região.', 'erro');
+        }
+
+      } catch (error) {
+        if (atendeRegiao) {
+          atualizarStatus('Sim, atendemos! Entrando na loja...', 'sucesso');
+          setTimeout(irParaLoja, 2000);
+        } else {
+          atualizarStatus('Desculpe, não atendemos sua região.', 'erro');
+        }
+      }
+    });
+
+    function atualizarStatus(texto, tipo) {
+      statusBox.innerText = texto;
+      statusBox.className = "status-box";
+      if (tipo === 'sucesso') statusBox.classList.add('status-sucesso');
+      if (tipo === 'erro') statusBox.classList.add('status-erro');
+    }
+  </script>
+</body>
+
+</html>
